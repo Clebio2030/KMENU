@@ -1,0 +1,320 @@
+{
+    "info": {
+        "name": "API Kmenu",
+        "description": "Documenta\u00e7\u00e3o da API para integra\u00e7\u00e3o com o sistema",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Login",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "url": {
+                    "raw": "https://demo.kmenu.com.br/api/auth/login",
+                    "protocol": "https",
+                    "host": [
+                        "demo",
+                        "kmenu",
+                        "com",
+                        "br"
+                    ],
+                    "path": [
+                        "api",
+                        "auth",
+                        "login"
+                    ]
+                },
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\"username\": \"usuario\", \"password\": \"senha\"}"
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Listar Tickets",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "https://demo.kmenu.com.br/api/ticket/list",
+                    "protocol": "https",
+                    "host": [
+                        "demo",
+                        "kmenu",
+                        "com",
+                        "br"
+                    ],
+                    "path": [
+                        "api",
+                        "ticket",
+                        "list"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Criar Ticket",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "url": {
+                    "raw": "https://demo.kmenu.com.br/api/ticket/create",
+                    "protocol": "https",
+                    "host": [
+                        "demo",
+                        "kmenu",
+                        "com",
+                        "br"
+                    ],
+                    "path": [
+                        "api",
+                        "ticket",
+                        "create"
+                    ]
+                },
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\"title\": \"Novo ticket de teste\", \"description\": \"Descri\u00e7\u00e3o do problema\", \"priority\": \"alta\"}"
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Listar Mensagens",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "https://demo.kmenu.com.br/api/message/list",
+                    "protocol": "https",
+                    "host": [
+                        "demo",
+                        "kmenu",
+                        "com",
+                        "br"
+                    ],
+                    "path": [
+                        "api",
+                        "message",
+                        "list"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Enviar Mensagem",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "url": {
+                    "raw": "https://demo.kmenu.com.br/api/message/send",
+                    "protocol": "https",
+                    "host": [
+                        "demo",
+                        "kmenu",
+                        "com",
+                        "br"
+                    ],
+                    "path": [
+                        "api",
+                        "message",
+                        "send"
+                    ]
+                },
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\"recipient\": \"Jo\u00e3o\", \"message\": \"Oi, como voc\u00ea est\u00e1?\"}"
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Listar Contatos",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "https://demo.kmenu.com.br/api/contact/list",
+                    "protocol": "https",
+                    "host": [
+                        "demo",
+                        "kmenu",
+                        "com",
+                        "br"
+                    ],
+                    "path": [
+                        "api",
+                        "contact",
+                        "list"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Criar Contato",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "url": {
+                    "raw": "https://demo.kmenu.com.br/api/contact/create",
+                    "protocol": "https",
+                    "host": [
+                        "demo",
+                        "kmenu",
+                        "com",
+                        "br"
+                    ],
+                    "path": [
+                        "api",
+                        "contact",
+                        "create"
+                    ]
+                },
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\"name\": \"Eurico Junior\", \"phone\": \"19971395449\"}"
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Listar Faturas",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "https://demo.kmenu.com.br/api/invoice/list",
+                    "protocol": "https",
+                    "host": [
+                        "demo",
+                        "kmenu",
+                        "com",
+                        "br"
+                    ],
+                    "path": [
+                        "api",
+                        "invoice",
+                        "list"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Criar Fatura",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "url": {
+                    "raw": "https://demo.kmenu.com.br/api/invoice/create",
+                    "protocol": "https",
+                    "host": [
+                        "demo",
+                        "kmenu",
+                        "com",
+                        "br"
+                    ],
+                    "path": [
+                        "api",
+                        "invoice",
+                        "create"
+                    ]
+                },
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\"amount\": 200.00, \"due_date\": \"2025-03-10\", \"customer_id\": 1}"
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Acionar Webhook",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "url": {
+                    "raw": "https://demo.kmenu.com.br/api/webhook",
+                    "protocol": "https",
+                    "host": [
+                        "demo",
+                        "kmenu",
+                        "com",
+                        "br"
+                    ],
+                    "path": [
+                        "api",
+                        "webhook"
+                    ]
+                },
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\"event\": \"new_ticket\", \"data\": {\"ticket_id\": 1, \"title\": \"Novo problema\", \"status\": \"aberto\"}}"
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Criar Sess\u00e3o WhatsApp",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "url": {
+                    "raw": "https://demo.kmenu.com.br/api/whatsapp/session",
+                    "protocol": "https",
+                    "host": [
+                        "demo",
+                        "kmenu",
+                        "com",
+                        "br"
+                    ],
+                    "path": [
+                        "api",
+                        "whatsapp",
+                        "session"
+                    ]
+                },
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\"phone_number\": \"19971395449\", \"session_name\": \"Sess\u00e3o WhatsApp 1\"}"
+                }
+            },
+            "response": []
+        }
+    ]
+}

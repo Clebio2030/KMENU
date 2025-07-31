@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700&display=swap"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/apple-touch-icon.png" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="viewport"
+      content="minimum-scale=1, initial-scale=1, width=device-width"
+    />
+    <meta
+      http-equiv="Cache-Control"
+      content="no-cache, no-store, must-revalidate"
+    />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      /* Modern splash screen styles */
+      #splash-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: #f8fafc;
+        z-index: 9999;
+        font-family: "Inter", sans-serif;
+      }
+
+      #splash-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        max-width: 320px;
+        width: 90%;
+        gap: 1.5rem;
+      }
+
+      .cloud-icon {
+        width: 80px;
+        height: 80px;
+        margin-bottom: 1rem;
+        color: #3b82f6;
+        animation: float 3s ease-in-out infinite;
+        filter: drop-shadow(0 5px 5px rgba(59, 130, 246, 0.2));
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+
+      .loading-text {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #1e293b;
+        position: relative;
+      }
+
+      .loading-text::after {
+        content: "...";
+        position: absolute;
+        animation: dots 1.5s steps(3, end) infinite;
+      }
+
+      @keyframes dots {
+        0%,
+        20% {
+          content: ".";
+        }
+        40% {
+          content: "..";
+        }
+        60%,
+        100% {
+          content: "...";
+        }
+      }
+
+      .progress-container {
+        width: 100%;
+        margin-top: 1rem;
+      }
+
+      .progress-info {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 0.5rem;
+        font-size: 0.875rem;
+        color: #64748b;
+      }
+
+      .progress-bar {
+        width: 100%;
+        height: 10px;
+        background-color: #e2e8f0;
+        border-radius: 5px;
+        overflow: hidden;
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      .progress {
+        height: 100%;
+        width: 0;
+        border-radius: 5px;
+        transition: width 0.1s linear, background-color 0.8s ease;
+        background: linear-gradient(
+          90deg,
+          #e0f2fe 0%,
+          #bae6fd 15%,
+          #7dd3fc 30%,
+          #38bdf8 45%,
+          #0ea5e9 60%,
+          #0284c7 75%,
+          #0369a1 90%
+        );
+        background-size: 200% 100%;
+        animation: gradientWave 4s ease infinite;
+      }
+
+      @keyframes gradientWave {
+        0%,
+        100% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+      }
+
+      .hint-text {
+        font-size: 0.75rem;
+        color: #94a3b8;
+        margin-top: 2rem;
+        font-style: italic;
+      }
+
+      /* Animation for fade out */
+      @keyframes fadeOut {
+        from {
+          opacity: 1;
+        }
+        to {
+          opacity: 0;
+        }
+      }
+
+      .fade-out {
+        animation: fadeOut 0.5s ease-out forwards;
+      }
+    </style>
+    <!-- Issue workaround for React v16. -->
+    <script>
+      // See https://github.com/facebook/react/issues/20829#issuecomment-802088260
+      if (!crossOriginIsolated) SharedArrayBuffer = ArrayBuffer;
+    </script>
+  </head>
+
+  <body>
+    <div id="splash-screen">
+      <div id="splash-content">
+        <!-- Ícone de nuvem moderno com animação -->
+        <svg
+          class="cloud-icon"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.5"
+            d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"
+          />
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.5"
+            d="M8 15a1 1 0 100-2 1 1 0 000 2zM12 15a1 1 0 100-2 1 1 0 000 2zM16 15a1 1 0 100-2 1 1 0 000 2z"
+            opacity="0.5"
+          />
+        </svg>
+
+        <div class="loading-text">Carregando</div>
+        <div class="progress-container">
+          <div class="progress-info">
+            <span>Inicializando</span>
+            <span id="progress-percent">0%</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress" id="progress-bar"></div>
+          </div>
+        </div>
+        <div class="hint-text">Isso pode levar alguns instantes</div>
+      </div>
+    </div>
+    <div id="root"></div>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <script>
+      // Configuração para completar em ~3 segundos (3000ms)
+      const TOTAL_DURATION = 3000; // 3 segundos
+      const INTERVAL_DELAY = 30; // atualiza a cada 30ms
+      const TOTAL_STEPS = TOTAL_DURATION / INTERVAL_DELAY;
+      let currentStep = 0;
+
+      const progressBar = document.getElementById("progress-bar");
+      const progressPercent = document.getElementById("progress-percent");
+      const progressInfo = document.querySelector(
+        ".progress-info span:first-child"
+      );
+      const splashScreen = document.getElementById("splash-screen");
+
+      const loadingPhases = [
+        { progress: 20, text: "Carregando recursos" },
+        { progress: 45, text: "Processando dados" },
+        { progress: 70, text: "Configurando interface" },
+        { progress: 90, text: "Finalizando" },
+      ];
+
+      let currentPhase = 0;
+
+      const interval = setInterval(() => {
+        currentStep++;
+        const progress = Math.min(100, (currentStep / TOTAL_STEPS) * 100);
+
+        if (
+          currentPhase < loadingPhases.length &&
+          progress >= loadingPhases[currentPhase].progress
+        ) {
+          progressInfo.textContent = loadingPhases[currentPhase].text;
+          currentPhase++;
+        }
+
+        progressBar.style.width = progress + "%";
+        progressPercent.textContent = Math.round(progress) + "%";
+
+        // Atualiza a intensidade do efeito de onda conforme o progresso
+        updateWaveEffect(progress);
+
+        if (progress >= 100) {
+          clearInterval(interval);
+          progressInfo.textContent = "Pronto!";
+          setTimeout(() => {
+            splashScreen.classList.add("fade-out");
+            setTimeout(() => {
+              splashScreen.remove();
+            }, 500);
+          }, 300);
+        }
+      }, INTERVAL_DELAY);
+
+      function updateWaveEffect(progress) {
+        // Ajusta a velocidade da animação conforme o progresso
+        const speed = 4 - progress / 33; // Fica mais rápido conforme avança
+        progressBar.style.animationDuration = `${speed}s`;
+
+        // Ajusta a opacidade do gradiente para manter a visibilidade
+        const opacity = 0.7 + progress / 200;
+        progressBar.style.opacity = opacity;
+      }
+
+      window.finishProgress = () => {
+        progress = 100;
+        progressBar.style.width = "100%";
+        progressPercent.textContent = "100%";
+        progressBar.style.animation = "none";
+        progressBar.style.background = "#0369A1"; // Cor final sólida
+      };
+
+      // Remove splash screen when all elements are loaded
+      window.addEventListener("load", () => {
+        if (progress < 100) {
+          window.finishProgress();
+        }
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mic-recorder-to-mp3@2.2.2/dist/index.min.js"></script>
+  </body>
+</html>

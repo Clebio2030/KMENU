@@ -1,0 +1,27 @@
+.customButton {
+	background:linear-gradient(to bottom, #ffffff, #ffffff);
+	background-color:#ffffff;
+	border:1px solid #124d77;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:13px;
+	padding:6px 24px;
+	text-decoration:none;
+        margin-right: 10px; /* Ajuste o valor conforme necessário para obter o espaço desejado */
+        vertical-align: middle; /* Opcional: alinha verticalmente o ícone com o texto */
+}
+.customButton:hover{
+	background:linear-gradient(to bottom, #bdc3c7, #bdc3c7);
+	background-color:#bdc3c7;
+}
+.customButton:active {
+	position:relative;
+	top:1px;
+}
+.icon {
+  margin-right: 30px; /* Ajuste o valor conforme necessário para obter o espaço desejado */
+  vertical-align: middle; /* Opcional: alinha verticalmente o ícone com o texto */
+}
+        
