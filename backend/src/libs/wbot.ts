@@ -1,5 +1,5 @@
 import * as Sentry from "@sentry/node";
-import makeWASocket, {
+import {
   AuthenticationState,
   Browsers,
   DisconnectReason,
@@ -12,10 +12,11 @@ import makeWASocket, {
   isJidGroup,
   jidNormalizedUser,
   makeCacheableSignalKeyStore,
-  makeInMemoryStore,
   proto,
+  makeWASocket
 } from "@whiskeysockets/baileys";
-import { FindOptions } from "sequelize/types";
+
+import { FindOptions } from "sequelize";
 import Whatsapp from "../models/Whatsapp";
 import logger from "../utils/logger";
 import MAIN_LOGGER from "@whiskeysockets/baileys/lib/Utils/logger";
@@ -112,7 +113,7 @@ export const restartWbot = async (
     whatsapp.map(async c => {
       const sessionIndex = sessions.findIndex(s => s.id === c.id);
       if (sessionIndex !== -1) {
-        sessions[sessionIndex].ws.close(undefined);
+        sessions[sessionIndex].ws.close();
       }
 
     });
@@ -159,21 +160,17 @@ export const initWASocket = async (whatsapp: Whatsapp): Promise<Session> => {
 
         const { id, name, allowGroup, companyId } = whatsappUpdate;
 
-        // const { version, isLatest } = await fetchLatestWaWebVersion({});
-        const { version, isLatest } = await fetchLatestBaileysVersion();
-        const versionB = [2, 2410, 1];
-        // logger.info(`using WA v${version.join(".")}, isLatest: ${isLatest}`);
-        logger.info(`Versão: v${version.join(".")}, isLatest: ${isLatest}`);
-        logger.info(`Starting session ${name}`);
-        let retriesQrCode = 0;
-
-        let wsocket: Session = null;
-        const store = makeInMemoryStore({
-          logger: loggerBaileys
-        });
         const { state, saveCreds } = await useMultiFileAuthState(whatsapp);
 
-        wsocket = makeWASocket({
+        let retriesQrCode = 0;
+
+        const { version, isLatest } = await fetchLatestBaileysVersion();
+        const { version: waVersion, isLatest: isLatestWaWeb } = await fetchLatestWaWebVersion({});
+
+        logger.info(`using WA v${waVersion.join('.')}, isLatest: ${isLatestWaWeb}`);
+        logger.info(`using Baileys v${version.join('.')}, isLatest: ${isLatest}`);
+
+        let wsocket: Session = makeWASocket({
           version,
           logger: loggerBaileys,
           printQRInTerminal: false,
@@ -482,8 +479,6 @@ export const initWASocket = async (whatsapp: Whatsapp): Promise<Session> => {
           }
         );
         wsocket.ev.on("creds.update", saveCreds);
-        // wsocket.store = store;
-        // store.bind(wsocket.ev);
       })();
     } catch (error) {
       Sentry.captureException(error);

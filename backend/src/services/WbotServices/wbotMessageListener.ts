@@ -3,28 +3,37 @@ import { promisify } from "util";
 import { readFile, writeFile } from "fs";
 import fs from "fs";
 import * as Sentry from "@sentry/node";
+import { WAMessageStubType } from "@whiskeysockets/baileys";
+import { proto } from "@whiskeysockets/baileys";
 import { isNil, isNull } from "lodash";
 import { REDIS_URI_MSG_CONN } from "../../config/redis";
 import axios from "axios";
 
 import {
+  AuthenticationState,
+  Browsers,
+  DisconnectReason,
+  WAMessage,
+  WAMessageKey,
+  WASocket,
+  fetchLatestWaWebVersion,
+  fetchLatestBaileysVersion,
+  isJidBroadcast,
+  isJidGroup,
+  jidNormalizedUser,
+  makeCacheableSignalKeyStore,
   downloadMediaMessage,
   extractMessageContent,
   getContentType,
   GroupMetadata,
-  jidNormalizedUser,
   delay,
   MediaType,
   MessageUpsertType,
-  proto,
-  WAMessage,
-  WAMessageStubType,
-  WAMessageUpdate,
-  WASocket,
   downloadContentFromMessage,
   AnyMessageContent,
   generateWAMessageContent,
-  generateWAMessageFromContent
+  generateWAMessageFromContent,
+  WAMessageUpdate
 } from "@whiskeysockets/baileys";
 import Contact from "../../models/Contact";
 import Ticket from "../../models/Ticket";
@@ -5118,7 +5127,7 @@ const filterMessages = (msg: WAMessage): boolean => {
       WAMessageStubType.E2E_DEVICE_CHANGED,
       WAMessageStubType.E2E_IDENTITY_CHANGED,
       WAMessageStubType.CIPHERTEXT
-    ].includes(msg.messageStubType as WAMessageStubType)
+    ].includes(msg.messageStubType)
   )
     return false;
 

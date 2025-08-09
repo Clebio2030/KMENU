@@ -14,10 +14,7 @@ import { startQueueProcess } from "./queues";
 import flowBuilderRoutes from './routes/flowBuilderRoutes';
 import app from "./app"; 
 
-const serverApp = express(); 
 
-serverApp.use(bodyParser.json());
-serverApp.use('/flow-builder', flowBuilderRoutes);
 
 const PORT = process.env.PORT || 5000;
 
@@ -48,12 +45,12 @@ if (process.env.CERTIFICADOS === "true") {
     cert: fs.readFileSync(process.env.SSL_CRT_FILE)
   };
 
-  const server = https.createServer(httpsOptions, serverApp).listen(PORT, () => {
+    const server = https.createServer(httpsOptions, app).listen(PORT, () => {
     startServer(server);
     logger.info(`Server started on port: ${PORT} with HTTPS`);
   });
 } else {
-  const server = serverApp.listen(PORT, () => {
+    const server = app.listen(PORT, () => {
     startServer(server);
     logger.info(`Server started on port: ${PORT}`);
   });
